@@ -2,7 +2,6 @@
 #define ANCESTOR_TREE_A_FAMILYTREE_HPP
 
 #include <string>
-
 using namespace std;
 
 namespace family {
@@ -35,7 +34,15 @@ namespace family {
 
         Node *findInner(Node *start, string name);
 
-        string resolve_height(Node & node);
+        //How fun is overloading
+        string resolveHeight(Node & node);
+        int resolveHeight(const string & relation);
+
+        size_t stringCount(const string & referenceString,
+                                  const string & subString);
+
+        bool validateRelation(const string & relation);
+        void deleteSubtree(Node *& node);//Reference to the pointer in order to avoid double pointer :)
 
     public:
         Tree(string name);
