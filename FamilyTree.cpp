@@ -1,6 +1,7 @@
 #include "FamilyTree.hpp"
 #include <stdexcept>
 #include <vector>
+#include <iostream>
 
 namespace family
 {
@@ -40,7 +41,10 @@ namespace family
         }
     }
 
-    void Tree::display(void){}
+    void Tree::display(void)
+    {
+        display("", _root, false);
+    }
 
     string Tree::relation(const string & name)
     {
@@ -316,4 +320,28 @@ namespace family
         delete node;
         node = NULL;//We don't want a dangling pointer
     }
+
+    /**
+     * https://stackoverflow.com/questions/36802354/print-binary-tree-in-a-pretty-way-using-c
+     * @param prefix
+     * @param node
+     * @param is_left
+     */
+    void Tree::display(const std::string& prefix, Node * node, bool is_left)
+    {
+        if( node != nullptr )
+        {
+            cout << prefix;
+
+            std::cout << (is_left ? "├──" : "└──" );
+
+            // print the value of the node
+            std::cout << node->_name << std::endl;
+
+            // enter the next tree level - left and right branch
+            display( prefix + (is_left ? "│   " : "    "), node->_father, true);
+            display( prefix + (is_left ? "│   " : "    "), node->_mother, false);
+        }
+    }
+
 }

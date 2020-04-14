@@ -43,6 +43,7 @@ namespace family {
 
         bool validateRelation(const string & relation);
         void deleteSubtree(Node *& node);//Reference to the pointer in order to avoid double pointer :)
+        void display(const std::string& prefix, Node * node, bool is_left);
 
     public:
         Tree(string name);
