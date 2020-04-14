@@ -8,12 +8,12 @@ TEST_CASE("Check the correctness of additions"){
     CHECK(T.find("me") == "Apollo");
 
     CHECK_NOTHROW(T.addFather("Apollo", "Zeus"));
-    CHECK(T.relation("father") == "Zeus");
-    CHECK(T.find("Zeus") == "father");
+    CHECK(T.relation("Zeus") == "father");
+    CHECK(T.find("father") == "Zeus");
 
     CHECK_NOTHROW(T.addMother("Apollo", "Leto"));
-    CHECK(T.relation("mother") == "Leto");
-    CHECK(T.find("Leto") == "mother");
+    CHECK(T.relation("Leto") == "mother");
+    CHECK(T.find("mother") == "Leto");
 
     CHECK_NOTHROW(T.addFather("Apollo", "Zeus1"));//It is ok to override the father
     CHECK_NOTHROW(T.addMother("Apollo", "Leto2"));//It is ok to override the mother
@@ -83,10 +83,10 @@ TEST_CASE("Check the correctness of remove 1") {
     T.addMother("Judah", "Leha");
 
     CHECK(T.relation("Judah") == "me");
-    CHECK(T.relation("Yaakov") == "father");
+    CHECK(T.relation("Yaakov") == "unrelated");
 
     CHECK(T.find("me") == "Judah");
-    CHECK(T.find("father") == "Yaakov");
+    CHECK_THROWS(T.find("father"));
 
     CHECK_THROWS(T.remove("Judah"));//Root of the tree, should throw exception
 
