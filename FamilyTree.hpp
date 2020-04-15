@@ -2,6 +2,7 @@
 #define ANCESTOR_TREE_A_FAMILYTREE_HPP
 
 #include <string>
+
 using namespace std;
 
 namespace family {
@@ -17,10 +18,9 @@ namespace family {
             Node(string name, Node *father, Node *mother, Node *son, int height) : _name(name), _father(father),
                                                                                    _mother(mother), _son(son),
                                                                                    _height(height) {};
-            bool operator==(const Node& other)
-            {
-                if(_father == other._father && _mother == other._mother)
-                {
+
+            bool operator==(const Node &other) {
+                if (_father == other._father && _mother == other._mother) {
                     return true;
                 }
 
@@ -30,20 +30,22 @@ namespace family {
 
         Tree::Node *_root;//Root father
 
-        Tree & add(Node *& node, Node & son, const string & older);
+        Tree &add(Node *&node, Node &son, const string &older);
 
         Node *findInner(Node *start, string name);
 
         //How fun is overloading
-        string resolveHeight(Node & node);
-        int resolveHeight(const string & relation);
+        string resolveHeight(Node &node);
 
-        size_t stringCount(const string & referenceString,
-                                  const string & subString);
+        int resolveHeight(const string &relation);
 
-        bool validateRelation(const string & relation);
-        void deleteSubtree(Node *& node);//Reference to the pointer in order to avoid double pointer :)
-        void display(const std::string& prefix, Node * node, bool is_left);
+        size_t stringCount(const string &reference_str,
+                           const string &sub_str);
+
+        bool validateRelation(const string &relation);
+
+        void deleteSubtree(Node *&node);//Reference to the pointer in order to avoid double pointer :)
+        void display(const string &prefix, Node *node, bool is_left);
 
     public:
         Tree(string name);
