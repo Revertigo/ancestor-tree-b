@@ -160,7 +160,7 @@ namespace family {
 //Private functions
     Tree &Tree::add(Node *&node, Node &son, const string &older) {
         if (node != nullptr) {
-            node->_name = older;
+            throw invalid_argument("Trying to add father/mother to someone already has father/mother");
         } else {
             node = new Node(older, nullptr, nullptr, &son, son._height + 1);
         }
