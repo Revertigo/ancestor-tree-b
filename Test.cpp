@@ -15,8 +15,8 @@ TEST_CASE("Check the correctness of additions"){
     CHECK(T.relation("Leto") == "mother");
     CHECK(T.find("mother") == "Leto");
 
-    CHECK_NOTHROW(T.addFather("Apollo", "Zeus1"));//It is ok to override the father
-    CHECK_NOTHROW(T.addMother("Apollo", "Leto2"));//It is ok to override the mother
+    CHECK_THROWS(T.addFather("Apollo", "Zeus1"));//It isn't ok to override the father
+    CHECK_THROWS(T.addMother("Apollo", "Leto2"));//It isn't ok to override the mother
     CHECK_THROWS(T.addFather("a", "b"));
 }
 
